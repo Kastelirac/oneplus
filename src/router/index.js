@@ -5,6 +5,7 @@ import pronadi from '@/components/pronadi'
 import ponudi from '@/components/ponudi'
 import registrirajse from '@/components/registrirajse'
 import prijava from '@/components/prijava'
+import trazi from '@/components/trazi'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path:'/prijava',
       name:'prijava',
       component: prijava
+    },
+    {
+      path:'/trazi',
+      name:'trazi',
+      component: trazi
     }
   ]
 })
