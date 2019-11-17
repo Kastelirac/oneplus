@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="da">
         <br/><br/><br/><br/><br/>
         <section class="main-section">
             <div class="circle-main"></div>
@@ -51,7 +51,7 @@
                             <div class="control">
                                 <label class="checkbox">
                                 <input type="checkbox">
-                                    Slažem se sa <a href="#">uvijetima i odredbama</a>
+                                    Slažem se sa <a href="#">uvjetima i odredbama</a>
                                 </label>
                             </div>
                         </div>
@@ -72,6 +72,10 @@
 <style scoped>
     .pls{
         text-align:center;
+    }
+    .da{
+        margin:0 auto;
+        max-width: 600px;
     }
 </style>
 <script>
