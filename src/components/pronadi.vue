@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <link rel="stylesheet" href="https://kit.fontawesome.com/18ca921f41.js">
+        <br/><br/><br/><br/><br/>        <link rel="stylesheet" href="https://kit.fontawesome.com/18ca921f41.js">
         <link href="../../node_modules/bulma-calendar/dist/css/bulma-calendar.min.css" rel="stylesheet">
         <br/><br/><br/><br/><br/><br/><br/>
         <h1>Odaberite mjesto i vrijeme </h1><br/>
