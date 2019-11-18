@@ -10,7 +10,9 @@
             <div class="columns background component-row">
                 <div class="column">
                 <div class="padable">
-                    <h1>Registriraj se <span class="line"></span></h1>
+                    <h3 class="title has-text-black">Registriraj se</h3>
+                    <hr class="login-hr">
+                    <p class="subtitle has-text-black">Registrirajte se kako bi koristili naše usluge brže i lakše.</p>
 
                     <div class="field">
                         <div class="control">
@@ -46,8 +48,7 @@
                         </div>                          
                     </div>
                     </div>
-                    <div class="pls">
-                        <div class="field">
+                        <div class="field" style="margin-left:17px;">
                             <div class="control">
                                 <label class="checkbox">
                                 <input type="checkbox">
@@ -55,6 +56,7 @@
                                 </label>
                             </div>
                         </div>
+                    <div class="pls">
                         <div class="field">
                             <div class="control">
                             <button class="button is-warning is-rounded">Napravite korisnički račun</button>
@@ -72,6 +74,8 @@
 <style scoped>
     .pls{
         text-align:center;
+        display:inline-block;
+        margin:0 auto;
     }
     .da{
         margin:0 auto;
