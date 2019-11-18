@@ -5,7 +5,8 @@ import App from './App'
 import router from './router'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
-// import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.min.js'
+//import 'bulma'
+//import bulmaCalendar from '../node_modules/bulma-calendar/dist/js/bulma-calendar.js'
 
 
 Vue.use(Buefy)
