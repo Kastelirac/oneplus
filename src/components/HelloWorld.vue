@@ -10,7 +10,7 @@
                         <h2 id="h2">
                           Pronalazak aktivnosti nikad nije bio lakši
                         </h2>
-                        <button class="button is-info is-medium"><router-link to="pronadi">Pronađi aktivnosti</router-link></button>
+                        <button class="button is-info is-rounded is-medium"><router-link to="pronadi">Pronađi aktivnosti</router-link></button>
 
                     </div>
                 </div>
