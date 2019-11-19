@@ -5,8 +5,6 @@ import App from './App'
 import router from './router'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
-//import 'bulma'
-//import bulmaCalendar from '../node_modules/bulma-calendar/dist/js/bulma-calendar.js'
 
 
 Vue.use(Buefy)
@@ -20,24 +18,3 @@ new Vue({
   template: '<App/>'
 })
 
-/*new Vue({
-  el: '#app',
-  data() {
-    return {
-      date: new Date(),
-    }
-  },
-  mounted() {
-    const calendar = bulmaCalendar.attach(this.$refs.calendarTrigger, {
-      startDate: this.date,
-    })[0]
-    calendar.on('date:selected', e => (this.date = e.start || null))
-  },
-  computed: {
-    niceDate() {
-      if (this.date) {
-        return this.date.toLocaleDateString()
-      }
-    }
-  }
-}); */
