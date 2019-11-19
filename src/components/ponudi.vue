@@ -2,45 +2,12 @@
 <template>
     <div class="da">
         <br/><br/><br/><br/>
-        <h3 class="title has-text-black">Napravi događanje</h3>
-        <div class="steps">
-        <div class="step-item is-completed is-success">
-            <div class="step-marker">
-            <span class="icon">
-                <i class="fa fa-check"></i>
-            </span>
-            </div>
-            <div class="step-details">
-            <p class="step-title">Step 1</p>
-            <p>This is the first step of the process.</p>
-            </div>
-        </div>
-        <div class="step-item is-active">
-            <div class="step-marker"></div>
-            <div class="step-details">
-            <p class="step-title">Step 2</p>
-            <p>This is the second step. You get here once you have completed the first step.</p>
-            </div>
-        </div>
-        <div class="step-item">
-            <div class="step-marker">3</div>
-            <div class="step-details">
-            <p class="step-title">Step 3</p>
-            <p>This is the third step. One more step before the end.</p>
-            </div>
-        </div>
-        <div class="step-item">
-            <div class="step-marker">
-            <span class="icon">
-                <i class="fa fa-flag"></i>
-            </span>
-            </div>
-            <div class="step-details">
-            <p class="step-title">Step 4</p>
-            <p>Final step. You have completed all the previous steps and end the process.</p>
-            </div>
-        </div>
-        </div>
+        <b-steps>
+            <b-step-item label="Mjesto" icon="account-key"></b-step-item>
+            <b-step-item label="Vrijeme" icon="account-key"></b-step-item>
+            <b-step-item label="Ljudi" icon="account"></b-step-item>
+            <b-step-item label="Dodatne pojedinosti" icon="account-plus"></b-step-item>
+        </b-steps>
         <br/><br/><br/><br/><br/>
         <h6 class="title is-6">Navedite mjesto gdje će se dešavati</h6>
         <div class="field">
@@ -58,7 +25,29 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5404.716085454414!2d15.932798875278898!3d45.80038056327336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d6b7cdd41863%3A0x5a31d185326a73df!2sChoco%20Caf%C3%A9%20Tre%C5%A1njevka!5e0!3m2!1shr!2shr!4v1574040496432!5m2!1shr!2shr" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
         </div>
         <h6 class="title is-6">Navedite vrijeme kad mislite početi</h6>
-        <input type="date"><br/><br/>
+        <b-field label="Odaberite datum">
+            <b-datepicker
+                placeholder="Odaberite datum"
+                icon="calendar-today"
+                editable>
+            </b-datepicker>
+        </b-field>
+        <div>
+            <div class="columns">
+                <div class="column">
+                    <b-field label="Vrijeme pocetka">
+                        <b-clockpicker v-model="minTime" :hour-format="format"></b-clockpicker>
+                    </b-field>
+                </div>
+                <div class="column">
+                    <b-field label="Vrijeme zavrsetka">
+                        <b-clockpicker v-model="maxTime" :hour-format="format"></b-clockpicker>
+                    </b-field>
+                </div>
+            </div>
+
+        </div>
+        <br/><br/>
         <div class="field">
             <div class="control">                        
                 <div class="control has-icons-left">
@@ -93,7 +82,24 @@
 
 <script>
 export default {
-    
+    data() {
+        const min = new Date()
+        min.setHours(9)
+        min.setMinutes(0)
+        const max = new Date()
+        max.setHours(18)
+        max.setMinutes(0)
+        return {
+            minTime: min,
+            maxTime: max,
+            isAmPm: false
+        }
+    },
+    computed: {
+        format() {
+            return this.isAmPm ? '12' : '24'
+        }
+    }
 }
 </script>
 
