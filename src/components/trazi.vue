@@ -35,6 +35,41 @@
                 </a>
             </li>
         </ul>
+        </div> 
+        <div class="mb-2 card" v-for="meetup in meetups" :key="meetup.id">
+            <header class="card-header">
+                <p class="card-header-title">
+                {{meetup.naziv}}
+                </p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                <div>Troskovi: {{meetup.troskovi}} </div> <br>
+                <p>Broj osoba: {{meetup.brojosoba}} </p> <br>
+                <p>Komentar:  {{meetup.komentar}}</p> <br>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <a href="#" class="card-footer-item">Prijavi se</a>
+            </footer>
+        </div>
+
     </div>
-</div> 
 </template>
+
+<script>
+  export default {
+    computed:{
+      meetups(){
+        return this.$store.getters.loadedMeetups
+      }
+    }
+  }
+</script>
+
+<style scoped>
+    .card{
+        width:40%;
+        margin:0 auto;
+    }
+</style>
