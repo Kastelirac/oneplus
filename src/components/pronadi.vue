@@ -1,7 +1,7 @@
 <template>
     <div class="max">
         <br/><br/><br/><br/><br/>        
-        <br/><br/><br/><br/><br/><br/><br/>
+
         <h1>Odaberite mjesto i vrijeme </h1><br/>
         <!--<b-field label="Kada?">
             <b-datetimepicker
@@ -29,8 +29,8 @@
         </b-clockpicker>
         </b-field>
         <br/><br/>
-        <b-field><br/>
-            <label class="label">Gdje?</label>
+        <label class="label">Gdje?</label>
+        <b-field>
             <div class="control">
                 <b-input rounded class="input" type="text" placeholder="Unesite ime mjesta"></b-input> 
             </div>
