@@ -1,5 +1,6 @@
 <template>
   <div class="bodi">
+    <!--
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="hero-body has-text-white">
                 <div class="container has-text-centered">
@@ -14,17 +15,65 @@
 
                     </div>
                 </div>
-            </div> 
+            </div> -->
+    <div id="app" class="container">
+          <section>
+              <b-carousel
+                  v-model="carousel"
+                  :animated="animated"
+                  :autoplay="autoPlay"
+                  :pause-hover="pauseHover"
+                  :interval="interval"
+                  @change="info($event)">
+                  <b-carousel-item 
+                  v-for="meetup in meetups"
+                  :key="meetup.id"
+                  :src="meetup.imageUrl"
+                  @click="onLoadMeetup(meetup.id)">
+                      <section :class="`hero is-medium is-${carousel.color} is-bold`">
+                          <div class="hero-body has-text-centered">
+                              <h1 class="title">{{meetup.naziv}}</h1>
+                          </div>
+                      </section>
+                  </b-carousel-item>
+              </b-carousel>
+          </section>
+    </div> 
   </div>
 </template>
-
-
+<script>
+export default {
+    data() {
+        return {
+            carousel: 0,
+            animated: 'slide',
+            drag: false,
+            autoPlay: true,
+            pauseHover: true,
+            pauseInfo: false,
+            pauseType: 'is-primary',
+            interval: 3000,
+        }
+    },
+    computed:{
+      meetups(){
+        return this.$store.getters.featuredMeetups
+      }
+    },
+    methods:{
+      onLoadMeetup(id){
+        this.$router.push('/trazi/' + id)
+      }
+    }
+}
+</script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- ../assets/wallpaper.jpg -->
 <style>
       .bodi{
-        background-image: url(../assets/wallpaper.jpg);
+        background-image: url(https://picsum.photos/200/300);  
         background-size: cover;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat; 
 
       }
 
@@ -37,3 +86,6 @@
         font-size:25px;
       }
 </style>
+
+
+
