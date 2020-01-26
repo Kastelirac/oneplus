@@ -1,55 +1,110 @@
 <template>
-<section class="hero is-fullheight container">
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <div class="column is-6 is-offset-3">
-                    <h3 class="title has-text-black">Prijavi se</h3>
+    <div class="da">
+        <br/><br/><br/><br/><br/>
+        <section class="main-section">
+            <div class="circle-main"></div>
+            <div class="circle-main-m"></div>
+            <div class="circle-main-s"></div>
+
+            <div class="container white-bg">
+            <div class="columns background component-row">
+                <div class="column">
+                <div class="padable">
+                    <h3 class="title has-text-black">Prijavite se</h3>
                     <hr class="login-hr">
-                    <p class="subtitle has-text-black">Prijavite se kako bi nastavili.</p>
-                    <div class="">
-                        <form>
-                            <div class="field">
-                                <div class="control">                        
-                                    <div class="control has-icons-left">
-                                        <input class="input is-rounded is-medium" type="email" placeholder="Vaš mail" autofocus="">
-                                        <span class="icon is-small is-left">
-                                            <i class="fa fa-envelope"></i>
-                                        </span>
-                                    </div>
+                    <form @submit.prevent="onSignin">
+                        <div class="field">
+                            <div class="control">
+                                <div class="control has-icons-left">
+                                <input class="input is-rounded is-medium"
+                                    name="email"
+                                    label="Mail"
+                                    id="email"
+                                    v-model="email"
+                                    type="email"
+                                    required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
                                 </div>
                             </div>
+                            <!-- <p class="help is-danger">This email is invalid</p> -->
+                        </div>
 
+                        <div class="field">
+                            <div class="control">
+                                <div class="control has-icons-left">
+                                    <input class="input is-rounded is-medium" 
+                                        name="password"
+                                        label="Password"
+                                        id="password"
+                                        v-model="password"
+                                        type="password"
+                                        required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>                          
+                            </div>
+                        </div>
+                        <div class="pls">
                             <div class="field">
                                 <div class="control">
-                                    <div class="control has-icons-left">
-                                    <input class="input is-rounded is-medium" type="password" placeholder="Vaša lozinka">
-                                        <span class="icon is-small is-left">
-                                            <i class="fa fa-lock"></i>
-                                        </span>
-                                    </div>
+                                    <button type="submit" class="button is-warning is-rounded">Prijava</button>
                                 </div>
                             </div>
-                            <div class="field">
-                                <label class="checkbox">
-                  <input type="checkbox">
-                  Zapamti me
-                </label>
-                            </div>
-                            <button class="button is-rounded is-block is-info is-large is-fullwidth">Prijavi se <i class="fa fa-sign-in" aria-hidden="true"></i></button>
-                        </form>
-                    </div>
-                    <p class="has-text-grey">
-                        <a href="../">Registrirajte se</a> &nbsp;·&nbsp;
-                        <a href="../">Zaboravljena lozinka</a> &nbsp;·&nbsp;
-                    </p>
+                        </div>
+                    </form>
+                </div>
                 </div>
             </div>
-        </div>
-    </section>
-</template>
+            </div>
 
+        </section>
+    </div>
+</template>
+<style scoped>
+    .pls{
+        text-align:center;
+        display:inline-block;
+        margin:0 auto;
+    }
+    .da{
+        margin:0 auto;
+        max-width: 600px;
+    }
+</style>
 <script>
-export default{
-    
-}
-</script>   
+  export default {
+    data () {
+      return {
+        email: '',
+        password: '',
+      }
+    },
+    computed: {
+      user () {
+        return this.$store.getters.user
+      },
+        error () {
+        return this.$store.getters.error
+      },
+      loading () {
+        return this.$store.getters.loading
+      }
+    },
+    watch: {
+      user (value) {
+        if (value !== null && value !== undefined) {
+          this.$router.push('/')
+        }
+      }
+    },
+    methods: {
+        onSignin () {
+            this.$store.dispatch('signUserIn', {email: this.email, password: this.password})
+        }
+
+    }
+  }
+</script>
