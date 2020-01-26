@@ -17,9 +17,9 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path:'/pronadi',
-      name:'pronadi',
-      component: pronadi
+      path:'/trazi',
+      name:'trazi',
+      component: trazi
     },
     {
       path:'/ponudi',
