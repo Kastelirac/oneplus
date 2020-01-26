@@ -9,7 +9,7 @@
                 :has-navigation="hasNavigation"
                 :icon-prev="prevIcon"
                 :icon-next="nextIcon">
-                <b-step-item label="Lokacija" :clickable="isStepsClickable">
+                <b-step-item :clickable="isStepsClickable">
                     <h1 class="title has-text-centered">Lokacija</h1>
                     <h6 class="title is-6">Navedite mjesto gdje će se dešavati</h6>
                     <div class="field">
@@ -27,7 +27,11 @@
                         <div>
                         <label>
                             <gmap-autocomplete
-                            @place_changed="setPlace">
+                                @place_changed="setPlace"
+                                v-model="lokacija"
+                                id="lokacija"
+                                name="lokacija">
+                                
                             </gmap-autocomplete>
                             <button @click="addMarker">Add</button>
                         </label>
@@ -51,26 +55,31 @@
                     </div>
                 </b-step-item>
 
-                <b-step-item label="Vrijeme" :clickable="isStepsClickable" :type="{'is-success': isProfileSuccess}">
+                <b-step-item :clickable="isStepsClickable" :type="{'is-success': isProfileSuccess}">
                     <h1 class="title has-text-centered">Vrijeme</h1>
                     <h6 class="title is-6">Navedite vrijeme kad mislite početi</h6>
                     <b-field label="Odaberite datum">
                         <b-datepicker
                             placeholder="Odaberite datum"
                             icon="calendar-today"
+                            id="date"
+                            name="date"
+                            v-model="date"
+                            format="dd/MM/yyyy"
                             editable>
+                            
                         </b-datepicker>
                     </b-field>
                     <div>
                         <div class="columns">
                             <div class="column">
                                 <b-field label="Vrijeme pocetka">
-                                    <b-clockpicker v-model="minTime" :hour-format="format"></b-clockpicker>
+                                    <b-clockpicker id="timestart" name="timestart" v-model="timestart" :hour-format="format"></b-clockpicker>
                                 </b-field>
                             </div>
                             <div class="column">
                                 <b-field label="Vrijeme zavrsetka">
-                                    <b-clockpicker v-model="maxTime" :hour-format="format"></b-clockpicker>
+                                    <b-clockpicker id="timeend" name="timeend"  v-model="timeend" :hour-format="format"></b-clockpicker>
                                 </b-field>
                             </div>
                         </div>
@@ -131,11 +140,11 @@
                                 required
                                 placeholder="Naziv aktivnosti">
                     <b-field label="Kategorija">
-                        <b-select id="okategoriju" placeholder="Odaberite kategoriju" >
-                            <option id="sport" value="sport">Sport</option>
-                            <option id="digre" value="drustveneigre">Drustvene igre</option>
-                            <option id="esport" value="esport">E-sport</option>
-                            <option id="random" value="random">Random</option>
+                        <b-select v-model="kategorija" id="okategoriju" placeholder="Odaberite kategoriju" >
+                            <option id="sport" value="Sport">Sport</option>
+                            <option id="digre" value="Drustvene igre">Drustvene igre</option>
+                            <option id="esport" value="E-sport">E-sport</option>
+                            <option id="random" value="Random">Random</option>
                         </b-select>
                     </b-field> 
                 </b-step-item>
@@ -195,24 +204,21 @@
             places: [],
             currentPlace: null,          
             }
-            const min = new Date()
-            min.setHours(9)
-            min.setMinutes(0)
-            const max = new Date()
-            max.setHours(18)
-            max.setMinutes(0)
             return {
-                minTime: min,
-                maxTime: max,
                 isAmPm: false
             }
             return {
-                lokacija: '',
-                vrijeme: '',
+                lat: '',
+                lng: '',
                 troskovi: '',
                 brojosoba:'',
                 komentar:'',
                 naziv:'',
+                date: '',
+                timestart: '',
+                timeend: '',
+                kategorija: '',
+
             }
             return {
                 activeStep: 0,
@@ -250,6 +256,16 @@
             lng: position.coords.longitude
             };
         });
+        }, 
+        /*
+        maknizagrade(){
+            var x = JSON.stringify(this.lokacija)
+            var lat = x.match(/\d+\.\d+|\d+\b|\d+(?=\w)/)[1].map(function (v) {return +v;}).shift()
+            console.log(lat)
+            return lat;
+        }, */
+        created(){
+            
         },
         onCreateMeetup(){
             //if (!this.formIsValid){
@@ -260,24 +276,32 @@
                 brojosoba: this.brojosoba,
                 komentar: this.komentar,
                 naziv: this.naziv,
-                datum: new Date()
+                date: this.date,
+                timestart: this.timestart,
+                timeend: this.timeend,
+                lat: this.center["lat"],
+                lng: this.center["lng"],
+                kategorija: this.kategorija
             }
             this.$store.dispatch('createMeetup', meetupData)
             this.$router.push('/trazi')
         }
     },
     computed: {
-        format() {
-            return this.isAmPm ? '12' : '24'
-        },
         formIsValid(){
             return this.troskovi !== '' 
             && this.brojosoba !== '' 
             && this.komentar !== '' 
             && this.naziv !== ''
-        }
+        },
+        format() {
+            return this.isAmPm ? '12' : '24'
+        },
+
+
+
     }
-    };
+    }
 </script>
 
 
