@@ -1,7 +1,6 @@
 <template>
     <div>
-        <br/><br/><br/><br/><br/>
-        <p> Ovdje bi trebalo doc koje su vrijeme i mjesto odabrali</p>
+        <br/><br/><br/>
         <div class="tabs is-centered">
         <ul>
             <li class="is-focused">
@@ -38,15 +37,32 @@
         </div> 
         <div class="mb-2 card" v-for="meetup in meetups" :key="meetup.id">
             <header class="card-header">
-                <p class="card-header-title">
-                {{meetup.naziv}}
+                <p class="card-header-title has-text-centered">
+                    {{meetup.naziv}}
                 </p>
             </header>
             <div class="card-content">
                 <div class="content">
                 <div>Troskovi: {{meetup.troskovi}} </div> <br>
                 <p>Broj osoba: {{meetup.brojosoba}} </p> <br>
+                <p>Kategorija: {{meetup.kategorija}} </p>
                 <p>Komentar:  {{meetup.komentar}}</p> <br>
+                <p>Datum: {{meetup.date  |  date}} </p>
+                <p>Vrijeme pocetka: {{meetup.timestart  |  time}} </p>
+                <p>Vrijeme zavrsetka: {{meetup.timeend  |  time}} </p>
+                <p>Lokacija: {{meetup.lat}} i {{meetup.lng}} </p>
+                <GmapMap 
+                    :center = "center"
+                    :zoom="7"
+                    style="width:100%;  height: 400px;" 
+                    >
+                    <GmapMarker
+                        :position="center"
+                    />
+                </GmapMap>
+
+
+
                 </div>
             </div>
             <footer class="card-footer">
@@ -59,17 +75,44 @@
 
 <script>
   export default {
+    data() {
+        return{
+            center: {lat: 50, lng: 20}
+        }
+    },
+    mounted(){
+        this.ajmo()
+    },
     computed:{
-      meetups(){
-        return this.$store.getters.loadedMeetups
-      }
+        meetups(){
+            return this.$store.getters.loadedMeetups
+        },
+        created(){
+            console.log(this.meetups)
+        },
+        },
+    methods:{
+        ajmo(){
+            this.meetups.forEach(meetup =>{
+                if(this.meetup){
+                    this.center = {
+                        lat: this.meetup.lat,
+                        lng: this.meetup.lng
+                    }
+                    console.log(this.meetups)
+                }
+            })
+        }
     }
   }
 </script>
 
+
 <style scoped>
     .card{
         width:40%;
-        margin:0 auto;
+        display:block;
+        margin:40px auto;
+        text-align: center;
     }
 </style>
