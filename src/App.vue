@@ -75,7 +75,7 @@
 			<template slot="end">
 			
 				<b-navbar-item>
-				  <router-link to="pronadi">
+				  <router-link to="trazi">
 					<span>Pronađi</span>
 				  </router-link>
 				</b-navbar-item>
