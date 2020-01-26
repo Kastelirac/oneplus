@@ -17,7 +17,7 @@
                 </div>
             </div> -->
     <div id="app" class="container">
-          <section>
+          <section class="has-text-centered">
               <b-carousel
                   v-model="carousel"
                   :animated="animated"
@@ -30,14 +30,15 @@
                   :key="meetup.id"
                   :src="meetup.imageUrl"
                   @click="onLoadMeetup(meetup.id)">
-                      <section :class="`hero is-medium is-${carousel.color} is-bold`">
+                      <section class="hero is-fullheight-with-navbar has-text-centered has-text-black is-bold">
                           <div class="hero-body has-text-centered">
-                              <h1 class="title">{{meetup.naziv}}</h1>
+                              <h1 class="title has-text-centered">{{meetup.naziv}}</h1>
                           </div>
                       </section>
                   </b-carousel-item>
               </b-carousel>
           </section>
+                 <button class="button is-info is-medium"><router-link to="trazi">Traži</router-link></button>
     </div> 
   </div>
 </template>
@@ -71,7 +72,7 @@ export default {
 <!-- ../assets/wallpaper.jpg -->
 <style>
       .bodi{
-        background-image: url(https://picsum.photos/200/300);  
+        background-image: url(http://lorempixel.com/950/740/sports/);  
         background-size: cover;
         background-repeat: no-repeat; 
 
